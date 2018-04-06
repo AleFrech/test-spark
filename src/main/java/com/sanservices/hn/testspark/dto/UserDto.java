@@ -5,16 +5,22 @@
  */
 package com.sanservices.hn.testspark.dto;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 /**
  *
  * @author afrech
  */
 public class UserDto {
     private int id;
-    private String username;
+    private String name;
     private String email;
     private String password;
-    private int resortId;
+    private String salt;
+    private BigDecimal salary;
+    private Date startingDate;
+    private int departmentId;
     private int roleId;
 
     public int getId() {
@@ -25,12 +31,12 @@ public class UserDto {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -49,12 +55,36 @@ public class UserDto {
         this.password = password;
     }
 
-    public int getResortId() {
-        return resortId;
+    public String getSalt() {
+        return salt;
     }
 
-    public void setResortId(int resortId) {
-        this.resortId = resortId;
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
+    public Date getStartingDate() {
+        return startingDate;
+    }
+
+    public void setStartingDate(Date startingDate) {
+        this.startingDate = startingDate;
+    }
+
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 
     public int getRoleId() {
@@ -64,4 +94,7 @@ public class UserDto {
     public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
+    
+    
+
 }

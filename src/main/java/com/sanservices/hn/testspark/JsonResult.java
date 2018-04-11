@@ -14,3 +14,4 @@ public class JsonResult {
     public String message = "";
     public Object data = "";
 }
+

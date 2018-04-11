@@ -2,41 +2,47 @@ package com.sanservices.hn.testspark;
 
 import com.sanservices.hn.testspark.controllers.Controller;
 import com.sanservices.hn.testspark.controllers.HelloController;
+import com.sanservices.hn.testspark.controllers.LoginController;
 import com.sanservices.hn.testspark.controllers.UserController;
-import java.io.InputStream;
+import com.sanservices.hn.testspark.filters.AuthorizeFilter;
+import com.sanservices.hn.testspark.handlers.ExceptionHandler;
+import com.sanservices.hn.testspark.util.PropertyMap;
 import spark.servlet.SparkApplication;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import spark.Spark;
 
 public final class Application implements SparkApplication {
 
     private final List<Controller> controllers;
+    private final ExceptionHandler handler;
+    private final AuthorizeFilter authorize;
     public static  String environment = "dev";
+    
 
     public Application(String env) {
         controllers = new ArrayList<>();
         controllers.add(new HelloController());
         controllers.add(new UserController());
+        controllers.add(new LoginController());
         environment = env;
+        authorize = new AuthorizeFilter();
+        handler = new ExceptionHandler();
+        
     }
 
     @Override
     public void init() {
         setupServer();
         startControllers();
+        handler.init();
+        authorize.init();
     }
     
     private void setupServer(){
-        Properties prop = new Properties();
-        try(InputStream input = getClass().getClassLoader().getResourceAsStream(environment+"/server.properties")){
-            prop.load(input);
-        }catch(Exception e){
-            throw  new RuntimeException(e);
-        }
-        Spark.port(Integer.valueOf(prop.getProperty("port","5000")));
+        PropertyMap prop = PropertyMap.fromSource("server.properties");
+        Spark.port(prop.getAsInt("port"));
     }
 
     private void startControllers() {

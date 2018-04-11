@@ -36,22 +36,22 @@ public final class UserController implements Controller {
         return userServices.getUser(request.params(":id"));
     }
     
-    public Object addUser(Request request, Response response) {
+    public Object addUser(Request request, Response response) throws Exception {
         response.type("application/json");
         response.status(200);
-        return "";
+        return userServices.addUser(request.body());
     }
     
-    public Object updateUser(Request request, Response response) {
+    public Object updateUser(Request request, Response response) throws Exception {
         response.type("application/json");
         response.status(200);
-        return "";
+        return userServices.updateUser(request.params(":id"),request.body());
     }
     
-    public Object deleteUser(Request request, Response response) {
+    public Object deleteUser(Request request, Response response) throws Exception {
         response.type("application/json");
         response.status(200);
-        return "";
+        return userServices.deleteUser(request.params(":id"));
     }
      
      

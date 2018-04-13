@@ -1,0 +1,31 @@
+{
+  "name": "game-shop",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.42",
+    "axios": "^0.18.0",
+    "material-ui": "^1.0.0-beta.41",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.1",
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.3.1",
+    "react-notifications": "^1.4.3",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}

@@ -5,6 +5,7 @@ import com.sanservices.hn.testspark.controllers.HelloController;
 import com.sanservices.hn.testspark.controllers.LoginController;
 import com.sanservices.hn.testspark.controllers.UserController;
 import com.sanservices.hn.testspark.filters.AuthorizeFilter;
+import com.sanservices.hn.testspark.filters.CorsFilter;
 import com.sanservices.hn.testspark.handlers.ExceptionHandler;
 import com.sanservices.hn.testspark.util.PropertyMap;
 import spark.servlet.SparkApplication;
@@ -18,8 +19,8 @@ public final class Application implements SparkApplication {
     private final List<Controller> controllers;
     private final ExceptionHandler handler;
     private final AuthorizeFilter authorize;
-    public static  String environment = "dev";
-    
+    private final CorsFilter cors;
+    public static String environment = "dev";
 
     public Application(String env) {
         controllers = new ArrayList<>();
@@ -29,18 +30,21 @@ public final class Application implements SparkApplication {
         environment = env;
         authorize = new AuthorizeFilter();
         handler = new ExceptionHandler();
-        
+        cors = new CorsFilter();
+
     }
 
     @Override
     public void init() {
         setupServer();
+        cors.init();
         startControllers();
         handler.init();
         authorize.init();
+
     }
-    
-    private void setupServer(){
+
+    private void setupServer() {
         PropertyMap prop = PropertyMap.fromSource("server.properties");
         Spark.port(prop.getAsInt("port"));
     }
@@ -50,9 +54,9 @@ public final class Application implements SparkApplication {
             controller.init();
         }
     }
-    
+
     public static void main(String[] args) {
         new Application(args[0]).init();
     }
-    
+
 }

@@ -5,7 +5,6 @@
  */
 package com.sanservices.hn.testspark.controllers;
 
-import com.sanservices.hn.testspark.dto.LoginDto;
 import com.sanservices.hn.testspark.services.*;
 import spark.Request;
 import spark.Response;
@@ -26,6 +25,7 @@ public class LoginController implements Controller {
     public void init() {
         Spark.path("/Login", () -> {
             Spark.post("/", this::Login);
+            Spark.options("/", (req, res) -> "Ok");
         });
     }
        

@@ -1,0 +1,10 @@
+{
+    "extends": ["standard", "standard-react"],
+    "plugins": ["react"],
+    "rules": {
+		"semi": ["error", "always"],
+		"indent": ["error", "tab"],
+        "no-tabs": "off",
+        "react/jsx-indent": ["error", "tab"]
+    }
+}

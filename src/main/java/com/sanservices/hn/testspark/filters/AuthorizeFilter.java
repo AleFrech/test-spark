@@ -11,7 +11,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sanservices.hn.testspark.dto.UserDto;
 import com.sanservices.hn.testspark.util.PropertyMap;
@@ -36,7 +35,9 @@ public class AuthorizeFilter {
     public void init() {
         PropertyMap prop = PropertyMap.fromSource("server.properties");
         Spark.before("/*", (request, response) -> {
-            request.requestMethod();
+            
+            if("OPTIONS".equals(request.requestMethod()))
+                return;  
             if (!unAuthorizedUris.contains(request.uri())) {
                 String bearerToken = request.headers("Authorization");
                 if(bearerToken  == null || !bearerToken.contains("Bearer"))

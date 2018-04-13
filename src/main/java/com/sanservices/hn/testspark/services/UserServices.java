@@ -180,7 +180,7 @@ public class UserServices {
                 obj.status="success";
                 obj.message="Entry removed Successfully!!";
             }else{
-                obj.message="Error removed entry, please try again";
+                obj.message="Error removing entry, please try again";
             }
             return gson.toJson(obj);
         }

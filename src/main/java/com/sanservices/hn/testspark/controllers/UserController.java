@@ -21,6 +21,7 @@ public final class UserController implements Controller {
             Spark.post("/", this::addUser);
             Spark.put("/:id",this::updateUser);
             Spark.delete("/:id",this::deleteUser);
+            Spark.options("/*", (req, res) -> "Ok");
         });
     }
     

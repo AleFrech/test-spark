@@ -44,7 +44,6 @@ class App extends Component {
                     <Route exact path='/' component={Login} />
                     <Route exact path='/users' component={Users} /> 
                     <Route exact path='/add' component={Add} /> 
-                    {/* <Route path='/' component={Main} /> */}
                 </Switch>
             </div>
         );
